@@ -23,6 +23,7 @@ class ApplicantFactory extends Factory
             'lname' => $this->faker->lastName(),
             'email' => $this->faker->companyEmail(),
             'phone' => $this->faker->phoneNumber(),
+            'status'=>'pending',
             'cv' => $this->faker->url(),
             'description' => $this->faker->paragraph(2)
         ];

@@ -20,15 +20,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark Otto</td>
-                    <td>mo@gmail.com</td>
-                    <td>0791181729</td>
-                    <td>JOb A Listing Title</td>
-                    <td>pending</td>
-                    <td><a href="/single_applicant"><button type="button" class="btn bg-laravel btn-success">View</button></a></td>
-                  </tr>
+                  
+                    @unless(count($applicants) == 0 )
+                      @foreach($applicants as $applicant)
+                      <tr>
+                        <x-applicants-table :applicant='$applicant'/>
+                      </tr>
+                      
+
+                      @endforeach
+
+                      @else
+                      <p>No Listing Found</p>
+                    @endunless
+                    
+                  
                   
                 </tbody>
               </table>

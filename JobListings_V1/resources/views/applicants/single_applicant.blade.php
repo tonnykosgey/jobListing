@@ -8,7 +8,7 @@
   <div class="row text-center">
       <div class="col-md-10 mx-auto table-responsive">
         
-      <h1 class="pb-5 "><b>JOB APPLIED FOR: <i>{{}}</i></b></h1>
+      <h1 class="pb-5 "><b>JOB APPLIED FOR: <i></i></b></h1>
           <table class="table table-hover">
               <thead> 
                 <tr>
@@ -20,10 +20,10 @@
               </thead>
               <tbody>
                 <tr>
-                  <td>Mark Otto</td>
-                  <td>mo@gmail.com</td>
-                  <td>0791181729</td>
-                  <td>pending</td>
+                  <td>{{$applicant['fname']}} {{$applicant['lname']}}</td>
+                  <td>{{$applicant['email']}}</td>
+                  <td>{{$applicant['phone']}}</td>
+                  <td>{{$applicant['status']}}</td>
                 </tr>
                 
               </tbody>
@@ -31,33 +31,11 @@
             <div class="row">
               <div class="col-md-6 mx-auto">
                 <h1 class="p-3"><b>DESCRIPTION</b></h1>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Blanditiis odio, nemo natus, dolor sint sequi modi animi vel ipsa, 
-                    reprehenderit cum. Suscipit consequatur nisi, modi eaque iste magnam blanditiis! Voluptate?
+                <p>
+                  {{$applicant['description']}}
                 </p>
               <div class="p-4">
-                <ul class="flex">
-                  <li
-                      class="bg-black text-white rounded-xl px-3 py-1 mr-2"
-                  >
-                      <a href="#">Laravel</a>
-                  </li>
-                  <li
-                      class="bg-black text-white rounded-xl px-3 py-1 mr-2"
-                  >
-                      <a href="#">API</a>
-                  </li>
-                  <li
-                      class="bg-black text-white rounded-xl px-3 py-1 mr-2"
-                  >
-                      <a href="#">Backend</a>
-                  </li>
-                  <li
-                      class="bg-black text-white rounded-xl px-3 py-1 mr-2"
-                  >
-                      <a href="#">Vue</a>
-                  </li>
-              </ul>
+                <x-applicant-tags :skillsCSV="$applicant->skills"/>
               </div>
 
             <div class="btn-group p-3" role="group" aria-label="Basic example">

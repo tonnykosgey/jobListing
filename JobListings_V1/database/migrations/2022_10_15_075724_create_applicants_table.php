@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('description');
+            $table->string('status');
             $table->string('cv');
             $table->string('skills');
             $table->timestamps();

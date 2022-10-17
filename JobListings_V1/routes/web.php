@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ApplicantsController;
+use App\Http\Controllers\ListingController;
 use App\Models\Listing;
 use Illuminate\Support\Facades\Route;
 
@@ -15,28 +17,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 // all Listings
-Route::get('/', function () {
-    return view('listings',[
-        'listings'=>Listing::all()
-    ]);
-});
+Route::get('/', [ListingController::class, 'index']);
 
 //single listing
-Route::get('/listing/{listing}', function(Listing $listing){
-
-    return view('listing',[
-        'listing'=> $listing
-        ]);
-    
-});
+Route::get('/listing/{listing}', [ListingController::class, 'show']);
 
 //show applicants
-Route::get('/applicants', function(){
-    return view('applicants'); 
-});
+Route::get('/applicants', [ApplicantsController::class, 'index']);
 
 //show single applicant
 
-Route::get('/single_applicant', function(){
-    return view('single_applicant');
-});
+Route::get('/single_applicant/{applicant}', [ApplicantsController::class, 'show']);
