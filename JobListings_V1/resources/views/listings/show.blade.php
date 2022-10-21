@@ -1,24 +1,77 @@
 <x-layout>
+    @include('partials._search')
 
-@include('partials._hero');
-@include('partials._search')
+    <a href="{{ '/' }}" class="inline-block text-black ml-4 mb-4"
+    ><i class="fa-solid fa-arrow-left"></i> Back
+</a>
+<div class="container">
+    <div class="mx-10 row justify-content-md-center">
+        
+        <div class="bg-gray-50 border border-gray-200 rounded m-3 col-sm">
+            <div
+                class="flex flex-col items-center justify-center text-center"
+            >
+                <img
+                    class="w-48 mr-6 mb-6"
+                    src="{{ asset('/images/acme.png') }}"
+                    alt=""
+                />
 
-{{-- All Job Listings --}}
-<div class="">
-    <div class="lg:grid lg:grid-cols-2 gap-10 space-y-4 md:space-y-0 mx-10 ">
+                <h3 class="text-2xl mb-2">{{ $listing['title'] }}</h3>
+                <div class="text-xl font-bold mb-4">{{ $listing['company'] }}</div>
+                
+                <x-listing-tags :tagsCSV="$listing->tags"/>
 
-        @unless(count($listings) == 0 )
-        @foreach($listings as $listing)
+                <div class="text-lg my-4">
+                    <i class="fa-solid fa-location-dot"></i>{{ $listing['location'] }}
+                </div>
+                <div class="border border-gray-200 w-full mb-6"></div>
+                <div>
+                    <h3 class="text-3xl font-bold mb-4">
+                        Job Description
+                    </h3>
+                    <div class="text-lg space-y-6">
+                        <p>
+                            {{ $listing['description'] }}
+                        </p>
 
-        <x-listing-card :listing='$listing'/>
 
-        @endforeach
+                        <a
+                            href="mailto:{{ $listing['email'] }}"
+                            class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"
+                            ><i class="fa-solid fa-envelope"></i>
+                            {{ $listing['email'] }}</a
+                        >
 
-        @else
-        <p>No Listing Found</p>
-        @endunless
+                        <a
+                            href="{{ $listing['website'] }}"
+                            target="_blank"
+                            class="block bg-black text-white py-2 rounded-xl hover:opacity-80"
+                            ><i class="fa-solid fa-globe"></i> Visit
+                            Website</a
+                        >
 
+                        <a
+                        href="/applicants"
+                        class="block bg-laravel text-white mt-6 py-2 rounded-xl hover:opacity-80"
+                        ><i class="fa-solid fa-people"></i>
+                        View Applicants</a
+                    >
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gray-50 border border-gray-200  rounded m-3 col-sm">
+            <header class="text-center pt-4">
+                <h2 class="text-2xl font-bold uppercase mb-1">
+                    APPLY FOR THIS JOB
+                <!-- </h2>
+                <p class="mb-4">Post a gig to find a developer</p> -->
+            </header>
+
+            @include('applicants.create');
+        </div>
     </div>
 </div>
-
+    
 </x-layout>

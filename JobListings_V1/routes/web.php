@@ -16,15 +16,37 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Create a new user/Register
+
+//Login to a your Account
+
+
+// JOB LISTINGS RUTES
 // all Listings
 Route::get('/', [ListingController::class, 'index']);
 
 //single listing
 Route::get('/listing/{listing}', [ListingController::class, 'show']);
 
+//store listing
+Route::post('/listings', [ListingController::class, 'store']);
+
+//Create a new Job
+Route::get('/listings/create', [ListingController::class, 'create']);
+
+
+
+
+
+
+// APPLICANTS ROUTES
 //show applicants
 Route::get('/applicants', [ApplicantsController::class, 'index']);
 
-//show single applicant
+//Apply for a Job
+Route::post('/applicants', [ApplicantsController::class, 'store']);
 
+//show single applicant
 Route::get('/single_applicant/{applicant}', [ApplicantsController::class, 'show']);
+
+
